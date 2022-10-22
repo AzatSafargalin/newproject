@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application
+    xmlns="http://wadl.dev.java.net/2009/02"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:command="urn:ru:ilb:newproject:command"
+    xmlns:view="urn:ru:ilb:newproject:view"
+    xmlns:core="urn:ru:ilb:newproject:core"
+    xmlns:global="urn:ru:ilb:newproject:global">
+
+    <grammars>
+        <include href="global.xsd"/>
+        <include href="command.xsd"/>
+        <include href="view.xsd"/>
+        <include href="core.xsd"/>
+    </grammars>
+
+    <resources base="http://localhost:8080/newproject-web/web">
+        <resource path="businessEntity" id="businessEntityResource">
+            <doc></doc>
+            <method name="GET" id="generateBusinessEntity">
+                <doc></doc>
+                <response status="200">
+                    <representation mediaType="application/xml" element="view:businessEntity"/>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <resource path="{uid}">
+                <param name="uid" type="global:uuid" style="template">
+                    <doc>businessentity uid</doc>
+                </param>
+                <method name="GET" id="getBusinessEntity">
+                    <doc>�������� ������� �� uid</doc>
+                    <response status="200">
+                        <representation mediaType="application/xml" element="view:businessEntity"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="test" id="testResource">
+            <doc>�������� ������</doc>
+            <resource path="ping">
+                <method name="GET" id="ping">
+                    <doc>�������� ������</doc>
+                    <response status="200">
+                        <representation mediaType="text/plain">
+                            <doc title="OK"/>
+                        </representation>
+                    </response>
+                </method>
+            </resource>
+            <resource path="async">
+                <method name="GET" id="async">
+                    <doc>�������� ����������� ������</doc>
+                    <response status="200">
+                        <representation mediaType="text/plain">
+                            <doc title="OK"/>
+                        </representation>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

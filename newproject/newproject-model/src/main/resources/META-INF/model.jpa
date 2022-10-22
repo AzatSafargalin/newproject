@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<entity-mappings ptype="MONOLITH" ppkg="ru.ilb.newproject" epkg="model" v="5.4.2" rws="_16426941256642" Pws="_16426941256642" cws="_16426941256642" persistenceUnitName="newproject" sm="false" xs="true" id="_16426941256641" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <entity compositePrimaryKeyClass="BusinessEntityPK" abs="true" class="BusinessEntity" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356559907939">
+        <ath>AndrewSych</ath>
+        <attributes>
+            <basic attribute-type="java.util.UUID" v="true" xvt="" name="uid" id="_164356570117243">
+                <xwm/>
+                <xm/>
+                <column unique="false" nullable="true" insertable="true" updatable="true" column-definition="BINARY(16) NOT NULL"/>
+            </basic>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_164356560784042">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="TABLE" generator="SEQ_BUSINESSENTITY_ID_GEN"/>
+                <table-generator name="SEQ_BUSINESSENTITY_ID_GEN" table="SEQUENCE" catalog="" schema="" pk-column-name="SEQ_NAME" value-column-name="SEQ_VALUE" pk-column-value="SEQ_BUSINESSENTITY_ID_GEN" initial-value="0" allocation-size="50"/>
+            </id>
+        </attributes>
+        <nq e="false" name="BusinessEntity.findAll">
+            <query>Select e from BusinessEntity e</query>
+        </nq>
+        <nq e="false" name="BusinessEntity.findByUid">
+            <query>Select b from BusinessEntity b where b.uid=:uid</query>
+        </nq>
+        <el>
+            <ln e="true" n="ru.ilb.newproject.listeners.BusinessEntityListener"/>
+        </el>
+        <table>
+            <index n="UNQ_BUSINESSENTITY" u="true">
+                <c c="UID"/>
+            </index>
+        </table>
+        <inheritance strategy="SINGLE_TABLE"/>
+        <discriminator-column name="" discriminator-type="INTEGER" column-definition="" length="11"/>
+    </entity>
+    <entity compositePrimaryKeyClass="PrivatePersonPK" abs="false" class="PrivatePerson" superclassId="_164356559907939" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356573105144">
+        <ath>AndrewSych</ath>
+        <attributes/>
+        <nq e="false" name="PrivatePerson.findAll">
+            <query>Select e from PrivatePerson e</query>
+        </nq>
+        <discriminator-value>1</discriminator-value>
+    </entity>
+    <entity compositePrimaryKeyClass="SelfEmployedPK" abs="false" class="SelfEmployed" superclassId="_164356559907939" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356586153552">
+        <ath>AndrewSych</ath>
+        <attributes/>
+        <nq e="false" name="SelfEmployed.findAll">
+            <query>Select e from SelfEmployed e</query>
+        </nq>
+        <discriminator-value>3</discriminator-value>
+    </entity>
+    <entity compositePrimaryKeyClass="CompanyTypePK" abs="false" class="CompanyType" superclassId="_164356559907939" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356592225556">
+        <ath>AndrewSych</ath>
+        <attributes/>
+        <nq e="false" name="CompanyType.findAll">
+            <query>Select e from CompanyType e</query>
+        </nq>
+        <discriminator-value>2</discriminator-value>
+    </entity>
+    <entity compositePrimaryKeyClass="LoanTreatyPK" abs="false" class="LoanTreaty" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356605693660">
+        <ath>AndrewSych</ath>
+        <attributes>
+            <one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_164356614491965" connected-attribute-id="_164356629025381" v="true" xvt="" name="requirements" id="_164356629025382">
+                <xwm/>
+                <xm/>
+            </one-to-many>
+            <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_164356559907939" v="true" xvt="" name="businessEntity" id="_164356612547864">
+                <xwm/>
+                <xm/>
+            </one-to-one>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_164356605693761">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="TABLE" generator="SEQ_LOANTREATY_ID_GEN"/>
+                <table-generator name="SEQ_LOANTREATY_ID_GEN" table="SEQUENCE" catalog="" schema="" pk-column-name="SEQ_NAME" value-column-name="SEQ_VALUE" pk-column-value="SEQ_LOANTREATY_ID_GEN" initial-value="0" allocation-size="50"/>
+            </id>
+        </attributes>
+        <nq e="false" name="LoanTreaty.findAll">
+            <query>Select e from LoanTreaty e</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="RequirementPK" abs="false" class="Requirement" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356614491965">
+        <ath>AndrewSych</ath>
+        <attributes>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_164356605693660" connected-attribute-id="_164356629025382" v="true" xvt="" name="loanTreaty" id="_164356629025381">
+                <xwm/>
+                <xm/>
+            </many-to-one>
+            <one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_164356630792083" v="true" xvt="" name="requirementType" id="_164356649280191">
+                <xwm/>
+                <xm/>
+            </one-to-one>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_164356614491966">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="TABLE" generator="SEQ_REQUIREMENT_ID_GEN"/>
+                <table-generator name="SEQ_REQUIREMENT_ID_GEN" table="SEQUENCE" catalog="" schema="" pk-column-name="SEQ_NAME" value-column-name="SEQ_VALUE" pk-column-value="SEQ_REQUIREMENT_ID_GEN" initial-value="0" allocation-size="50"/>
+            </id>
+        </attributes>
+        <nq e="false" name="Requirement.findAll">
+            <query>Select e from Requirement e</query>
+        </nq>
+    </entity>
+    <entity compositePrimaryKeyClass="RequirementTypePK" abs="false" class="RequirementType" v="true" jbn="false" xre="false" m="false" rootElement="_16426941256641" id="_164356630792083">
+        <ath>AndrewSych</ath>
+        <attributes>
+            <basic attribute-type="ru.ilb.newproject.core.RequirementTypeCode" v="true" xvt="" name="code" id="_164356646123086">
+                <xwm/>
+                <xm/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic attribute-type="String" v="true" xvt="" name="name" id="_164356646755987">
+                <xwm/>
+                <xm/>
+            </basic>
+            <id attribute-type="Long" v="true" xvt="" name="id" id="_164356630792284">
+                <xwm/>
+                <xm/>
+                <generated-value strategy="TABLE" generator="SEQ_REQUIREMENT_TYPE_ID_GEN"/>
+                <table-generator name="SEQ_REQUIREMENT_TYPE_ID_GEN" table="SEQUENCE" catalog="" schema="" pk-column-name="SEQ_NAME" value-column-name="SEQ_VALUE" pk-column-value="SEQ_REQUIREMENT_TYPE_ID_GEN" initial-value="0" allocation-size="50"/>
+            </id>
+        </attributes>
+        <nq e="false" name="RequirementType.findAll">
+            <query>Select e from RequirementType e</query>
+        </nq>
+        <nq e="false" name="RequirementType.findByCode">
+            <query>Select r from RequirementType r where r.code=:code</query>
+        </nq>
+        <nq e="false" name="RequirementType.findByName">
+            <query>Select r from RequirementType r where r.name=:name</query>
+        </nq>
+    </entity>
+    <inf e="true" n="java.io.Serializable"/>
+    <c>
+        <ct>java.util.List</ct>
+        <ct>java.util.Set</ct>
+        <ct>java.util.Map</ct>
+        <ct>java.util.Collection</ct>
+        <cit>java.util.ArrayList</cit>
+        <cit>java.util.LinkedList</cit>
+        <cit>java.util.HashSet</cit>
+        <cit>java.util.TreeSet</cit>
+        <cit>java.util.HashMap</cit>
+    </c>
+    <wsl>
+        <ws n="Main" id="_16426941256642">
+            <i ref="_164356614491965" x="398" y="286"/>
+            <i ref="_164356630792083" x="644" y="221"/>
+            <i ref="_164356559907939" x="64" y="33"/>
+            <i ref="_164356586153552" x="406" y="158"/>
+            <i ref="_164356592225556" x="399" y="101"/>
+            <i ref="_164356573105144" x="398" y="51"/>
+            <i ref="_164356605693660" x="120" y="286"/>
+        </ws>
+    </wsl>
+</entity-mappings>

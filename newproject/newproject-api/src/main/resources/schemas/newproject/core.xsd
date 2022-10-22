@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    elementFormDefault="qualified"
+    xmlns="urn:ru:ilb:newproject:core"
+    targetNamespace="urn:ru:ilb:newproject:core"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:simpleType name="assetHolderCode">
+        <xsd:annotation>
+            <xsd:documentation>����������������</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ASSETHOLDER_ONE">
+                <xsd:annotation>
+                    <xsd:documentation>���������������� ����</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ASSETHOLDER_TWO">
+                <xsd:annotation>
+                    <xsd:documentation>���������������� ���</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ASSETHOLDER_THREE">
+                <xsd:annotation>
+                    <xsd:documentation>���������������� ���</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="pawnCategoryCode">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="L01">
+                <xsd:annotation>
+                    <xsd:documentation>L01</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="L02">
+                <xsd:annotation>
+                    <xsd:documentation>L02</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="L03">
+                <xsd:annotation>
+                    <xsd:documentation>L03</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="L04">
+                <xsd:annotation>
+                    <xsd:documentation>L04</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="requirementTypeCode">
+        <xsd:annotation>
+            <xsd:documentation>��� ����������</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REQUIREMENT_ONE">
+                <xsd:annotation>
+                    <xsd:documentation>��� ���������� ����</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REQUIREMENT_TWO">
+                <xsd:annotation>
+                    <xsd:documentation>��� ���������� ���</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REQUIREMENT_THREE">
+                <xsd:annotation>
+                    <xsd:documentation>��� ���������� ���</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+</xsd:schema>

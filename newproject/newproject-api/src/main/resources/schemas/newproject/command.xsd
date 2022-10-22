@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+    elementFormDefault="qualified"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:ru:ilb:newproject:command"
+    attributeFormDefault="unqualified"
+    targetNamespace="urn:ru:ilb:newproject:command"
+    xmlns:core="urn:ru:ilb:newproject:core"
+    xmlns:global="urn:ru:ilb:newproject:global"
+    xmlns:annox="http://annox.dev.java.net">
+
+    <xsd:import namespace="urn:ru:ilb:newproject:core" schemaLocation="./core.xsd"/>
+    <xsd:import namespace="urn:ru:ilb:newproject:global" schemaLocation="./global.xsd"/>
+
+    <xsd:complexType abstract="true" name="requirementRequestType">
+        <xsd:annotation>
+            <xsd:documentation></xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="requirementNumber" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>����� ����������</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="createRequirementRequestType">
+        <xsd:complexContent>
+            <xsd:extension base="requirementRequestType">
+                <xsd:sequence>
+                    <xsd:element name="loanTreatyUid" type="global:uuid">
+                        <xsd:annotation>
+                            <xsd:documentation>����� ��������</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="assetHolderCode" type="core:assetHolderCode">
+                        <xsd:annotation>
+                            <xsd:documentation>��� ����������������</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="createRequirementRequest" type="createRequirementRequestType"/>
+
+</xsd:schema>

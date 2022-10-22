@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
+    xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+    xmlns:sec="http://cxf.apache.org/configuration/security"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
+        http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    
+    <jaxrs-client:client
+        id="testProxy"
+        address="${ru.ilb.newproject.apps.test.ws}"
+        basePackages="ru.ilb.common.jaxrs.providers"
+        serviceClass="ru.ilb.newproject.gateway.utils.custom.TestResource"
+        username="ide" password="123">
+    </jaxrs-client:client>
+
+    <!-- с версии cxf 3.2.5 не работает автоматическая конфигурация ssl -->
+    <!--    <http-conf:conduit name="*.http-conduit">
+        <http-conf:tlsClientParameters>
+            <sec:keyManagers keyPassword="${javax.net.ssl.keyStorePassword}">
+                <sec:keyStore
+                    type="${javax.net.ssl.keyStoreType:JKS}"
+                    password="${javax.net.ssl.keyStorePassword}"
+                    file="${javax.net.ssl.keyStore}"/>
+            </sec:keyManagers>
+            <sec:trustManagers>
+                <sec:keyStore type="${javax.net.ssl.trustStoreType:JKS}" file="${javax.net.ssl.trustStore}"/>  
+                password="${javax.net.ssl.trustStorePassword:#{null}}" 
+            </sec:trustManagers>
+        </http-conf:tlsClientParameters>
+        disable chunking, not works everywhere 
+        <http-conf:client AllowChunking="false"/>
+    </http-conf:conduit>-->
+    
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${corePoolSize}"/>
+        <property name="maxPoolSize" value="${maxPoolSize}"/>
+        <property name="queueCapacity" value="${queueCapacity}"/>
+    </bean>
+
+    <task:scheduler id="taskScheduler" pool-size="3"/>
+    <task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/>
+    <task:scheduled-tasks scheduler="taskScheduler">
+        <task:scheduled
+            ref="testServiceTask"
+            method="execute"
+            cron="${apps.newproject.tasks.testschedule}"/>
+    </task:scheduled-tasks>
+</beans>

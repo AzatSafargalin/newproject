@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<jaxb:bindings
+    elementFormDefault="qualified"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:annox="http://annox.dev.java.net"
+    xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+    xmlns:core="urn:ru:ilb:newproject:core"
+    jaxb:version="2.1"
+    jaxb:extensionBindingPrefixes="xjc annox inheritance"
+    schemaLocation="view.xsd"
+    node="/xsd:schema">
+
+    <jaxb:bindings node="//xsd:complexType[@name='businessEntityType']">
+        <jaxb:class name="businessEntity"/>
+        <annox:annotate>
+            <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="businessEntity"/>
+        </annox:annotate>
+    </jaxb:bindings>
+    <jaxb:bindings node="//xsd:complexType[@name='privatePersonType']">
+        <jaxb:class name="privatePerson"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//xsd:complexType[@name='companyType']">
+        <jaxb:class name="companyType"/>
+    </jaxb:bindings>
+    <jaxb:bindings node="//xsd:complexType[@name='selfEmployedType']">
+        <jaxb:class name="selfEmployed"/>
+    </jaxb:bindings>
+    
+</jaxb:bindings>

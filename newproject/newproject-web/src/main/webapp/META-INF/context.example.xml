@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/newproject-web">
+    <Resource auth="Container"
+              driverClassName="com.mysql.jdbc.Driver"
+              logAbandoned="true"
+              maxWaitMillis="20000"
+              removeAbandonedOnBorrow="true"
+              removeAbandonedTimeout="100"
+              type="javax.sql.DataSource"
+              url="jdbc:mysql://localhost:3306/newproject?
+                autoReconnect=true&amp;
+                elideSetAutoCommits=true&amp;
+                useLocalSessionState=true&amp;
+                maintainTimeStats=false&amp;
+                serverTimezone=Europe/Samara&amp;
+                rewriteBatchedStatements=true&amp;
+                useUnicode=true&amp;
+                characterEncoding=utf8"
+              name="jdbc/.apps.newproject/.apps.newproject.db"
+              username="newproject"
+              password="548548"
+              validationQuery="SELECT 1"/>
+
+    <!-- ������� ��������������� ������������ � ������� ������ �� ������ -->
+    <Resource auth="Container"
+              driverClassName="com.mysql.jdbc.Driver"
+              logAbandoned="true"
+              maxWaitMillis="20000"
+              removeAbandonedOnBorrow="true"
+              removeAbandonedTimeout="100"
+              type="javax.sql.DataSource"
+              url="jdbc:mysql://localhost:3306/newprojecttest?
+                autoReconnect=true&amp;
+                elideSetAutoCommits=true&amp;
+                useLocalSessionState=true&amp;
+                maintainTimeStats=false&amp;
+                serverTimezone=Europe/Samara&amp;
+                rewriteBatchedStatements=true&amp;
+                useUnicode=true&amp;
+                characterEncoding=utf8"
+              name="jdbc/.apps.newproject/.apps.test.db.ro"
+              username="newproject"
+              password="548548"
+              validationQuery="SELECT 1"/>
+
+    <!-- ���������� url ��� �������� ������ ������ -->
+    <Environment name="ru.ilb.newproject.apps.test.ws" value="https://www.google.com/" type="java.lang.String" override="false"/>
+    <Environment name="apps.newproject.tasks.testtaskenabled" value="false" type="java.lang.Boolean" override="false"/>
+    
+</Context>
